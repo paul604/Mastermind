@@ -13,7 +13,7 @@ private $connexion;
 	public function __construct(){
 		//try{
 			$chaine="mysql:host=localhost;dbname=E155441H";
-			$this->connexion = new PDO($chaine,"roo","");
+			$this->connexion = new PDO($chaine,"root","");
 			$this->connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 		/*}catch(PDOException $e){
 			echo "bd";
