@@ -18,12 +18,18 @@ class VueJeu{
 			<h1>Mastermind</h1>
 			<div id="plateau">
 				<?php
+					$i=1;
 					foreach($plateau[0] as $tab){
 						echo "<ul>";
-						foreach($tab->get() as $val){
-							echo "<li id=\"c".$val."\">".$val."</li>";
+						foreach($tab as $val){
+							if($i==$plateau[2]){
+								echo "<li id=\"c".$val."\" classe=\"courant\">".$val."</li>";
+							}else{
+								echo "<li id=\"c".$val."\">".$val."</li>";
+							}
 						}
 						echo "</ul>";
+						$i++;
 					}
 				?>
 			</div>
@@ -32,7 +38,7 @@ class VueJeu{
 				<?php
 					foreach($plateau[0] as $tab){
 						echo "<ul>";
-						foreach($tab->get() as $val){
+						foreach($tab as $val){
 							echo "<li>".$val."</li>";
 						}
 						echo "</ul>";
@@ -52,9 +58,9 @@ class VueJeu{
 					<li id="c8"></li>
 				</ul>
 			</div>
-		
+
 			<form method="post" action="index.php">
-		  
+
 				<input type="submit" name="soumettre" value="envoyer"/>
 			</form>
 			<br/>
