@@ -12,7 +12,8 @@ class VueJeu{
 			<meta charset="UTF-8">
 			<title>Mastermind</title>
 			<link rel="stylesheet" href="vue/reset.css">
-			<link rel="stylesheet" href="vue/css.css">
+			<link rel="stylesheet" href="vue/css.css">			
+			<script src="/script/script.js" type="text/javascript"></script>
 		</head>
 		<body>
 			<h1>Mastermind</h1>
