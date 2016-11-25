@@ -25,7 +25,7 @@ class Jeu{
 	public function addCombin($combinaison){
 		$this->plateau[$this->tourEnCour]->addAll($combinaison);
 	}
-	
+
 	public function verifCombin($combinaison){
 		$j=0;
 		$fait=array();
@@ -65,12 +65,12 @@ class Jeu{
 			}
 		}else{
 			if ($this->tourEnCour!=0) {
-				throw new $exeption("problème avec le jeu");
+				throw new $exeption("problï¿½me avec le jeu");
 			}
 		}
 		$this->tourEnCour++;
 		//$this->jeu->jeu($this->plateau[]);
-		return array($this->plateau , $this->tabVerif);
+		return array($this->plateau , $this->tabVerif, $this->tourEnCour);
 		//return $this->plateau;
 	}
 
@@ -79,7 +79,7 @@ class Jeu{
 			$this->combine->add($i,rand(1,8));
 		}
 	}
-  
+
 	public function creeJeu(){
 		$this->creerCombin();
 		return $this->jeu(null);
