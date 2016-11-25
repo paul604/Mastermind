@@ -1,6 +1,10 @@
 body{
 	display: flex;
 }
+#plateau, #verif{
+	display: flex;
+	flex-direction: column-reverse;
+}
 li {
     /*display: flex;
 	width:25%;
@@ -20,7 +24,7 @@ ul {
 }
 
 #color {
-	
+
 }
 
 #c1{
