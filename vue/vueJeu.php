@@ -33,7 +33,7 @@ class VueJeu{
 					}
 				?>
 			</div>
-			ttttttttt
+
 			<div id="verif">
 				<?php
 					foreach($plateau[0] as $tab){
@@ -45,7 +45,7 @@ class VueJeu{
 					}
 				?>
 			</div>
-			ttttttttt
+
 			<div id="color">
 				<ul>
 					<li id="c1"></li>
@@ -60,6 +60,11 @@ class VueJeu{
 			</div>
 
 			<form method="post" action="index.php">
+
+				<input type="text" name="1" value="0" hidden="">
+				<input type="text" name="2" value="0" hidden="">
+				<input type="text" name="3" value="0" hidden="">
+				<input type="text" name="4" value="0" hidden="">
 
 				<input type="submit" name="soumettre" value="envoyer"/>
 			</form>
