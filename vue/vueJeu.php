@@ -25,7 +25,7 @@ class VueJeu{
 						$indice=1;
 						foreach($tab as $val){
 							if($i==$plateau[2]){
-								echo "<li id=\"c".$val."\" classe=\"courant\" classe=\"".$indice."\">".$val."</li>";
+								echo "<li id=\"c".$val."\" classe=\"courant\" class=\"".$indice."\">".$val."</li>";
 							}else{
 								echo "<li id=\"c".$val."\">".$val."</li>";
 							}
