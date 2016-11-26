@@ -4,7 +4,9 @@ require_once __DIR__."/../vue/vueConection.php";
 require_once __DIR__."/../modele/bd.php";
 //require_once __DIR__."/controleurJeu.php";
 
-session_start();
+// if(!isset($_SESSION)){
+    // session_start();
+// }
 
 class ControleurAuthentification{
 

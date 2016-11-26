@@ -6,6 +6,7 @@ class VueJeu{
 
 	public function Jeu($plateau){//$plateau[0]=> le jeu $plateau[1]=> le tabl verif
 		header("Content-type: text/html; charset=utf-8");
+		//header('Location: index.php', true, 303);
     ?>
     <html>
 		<head>
@@ -16,7 +17,7 @@ class VueJeu{
 			<script src="vue/script.js" type="text/javascript"></script>
 		</head>
 		<body>
-			<h1>Mastermind</h1>
+			<h1>Mastermind <?php  echo $plateau[2] ?></h1>
 			<div id="plateau">
 				<?php
 					$i=1;
@@ -25,7 +26,7 @@ class VueJeu{
 						$indice=1;
 						foreach($tab as $val){
 							if($i==$plateau[2]){
-								echo "<li id=\"c".$val."\" classe=\"courant\" class=\"".$indice."\">".$val."</li>";
+								echo "<li id=\"c".$val."\" class=\"courant\" class=\"".$indice."\">".$val."</li>";
 							}else{
 								echo "<li id=\"c".$val."\">".$val."</li>";
 							}
@@ -39,10 +40,10 @@ class VueJeu{
 
 			<div id="verif">
 				<?php
-					foreach($plateau[0] as $tab){
+					foreach($plateau[1] as $tab){
 						echo "<ul>";
 						foreach($tab as $val){
-							echo "<li>".$val."</li>";
+							echo "<li id=\"c".$val."\">".$val."</li>";
 						}
 						echo "</ul>";
 					}
@@ -62,7 +63,7 @@ class VueJeu{
 				</ul>
 			</div>
 
-			<form method="post" action="index.php">
+			<form method="post" action="index.php" name="choix">
 
 				<input type="text" name="1" value="0" hidden="">
 				<input type="text" name="2" value="0" hidden="">

@@ -13,14 +13,14 @@ class Combinaison{
 			$this->minim=1;
 			$this->maxi=8;
 		}else{
-			throw new $exeption("problème avec la création de combine");
+			throw new Exception("problème avec la création de combine");
 		}
 	}
 
 //$codeCouleur 1 a 8 ou 0 a 2
 	public function add($indice, $codeCouleur){
 		if($codeCouleur < $this->minim or $codeCouleur>$this->maxi){
-			throw new $exeption("problème avec l'ajout dans combine");
+			throw new Exception("problème avec l'ajout dans combine");
 		}
 		$this->combine[$indice]=$codeCouleur;
 	}
@@ -29,12 +29,12 @@ class Combinaison{
 		if(count($array)==4){
 			for ($i=0; $i < 4; $i++) {
 				if($array[$i] < $this->minim or $array[$i]>$this->maxi){
-					throw new $exeption("problème avec l'ajout dans combine");
+					throw new Exception("problème avec l'ajout dans combine");
 				}
 				$this->add($i, $array[$i]);
 			}
 		}else{
-			throw new $exeption("problème avec l'ajout dans combine");
+			throw new Exception("problème avec l'ajout dans combine");
 		}
 	}
 	

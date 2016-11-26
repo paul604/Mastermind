@@ -2,6 +2,10 @@
 
 require_once __DIR__."/combinaison.php";
 
+if(!isset($_SESSION)){
+    session_start();
+}
+
 class Jeu{
 
 	private $combine;
@@ -14,12 +18,17 @@ class Jeu{
 		$this->tourEnCour=0;
 		$this->maxtour=10;
 		$this->combine= new Combinaison(0);
+		$this->creerCombin();
 		$this->plateau= array();
 		$this->tabVerif= array();
 		for ($i=0; $i < $this->maxtour; $i++) {
 			$this->plateau[$i]=new Combinaison(0);
 			$this->tabVerif[$i]=new Combinaison(1);
 		}
+	}
+	
+	function __autoload($name){
+		require_once __DIR__."/".$name.".php";
 	}
 
 	public function addCombin($combinaison){
@@ -29,11 +38,12 @@ class Jeu{
 	public function verifCombin($combinaison){
 		$j=0;
 		$fait=array();
+		$fait2=array();
 		//pion bien placer
 		for($i=0; $i <4 ; $i++){
 			if($combinaison[$i] == $this->combine->getIndice($i)){
 				$fait[]=$i;
-				$this->tabVerif[tourEnCour]->add($j,-2);
+				$this->tabVerif[$this->tourEnCour]->add($j,-2);
 				$j++;
 			}
 		}
@@ -43,11 +53,13 @@ class Jeu{
 			//pion male placer
 			for($i=0; $i <4 ; $i++){
 				if(!in_array($i,$fait)){
-					for($k=$i+1; $i<4; $i++){
-						if(!in_array($k,$fait)){
+					for($k=0; $i<4; $i++){
+						if(!in_array($k,$fait) && !in_array($k,$fait2)){
 							if($combinaison[$i] == $this->combine->getIndice($k)){
-								$this->tabVerif[tourEnCour]->add($j,-2);
+								$fait2[]=$k;
+								$this->tabVerif[$this->tourEnCour]->add($j,-1);
 								$j++;
+								$k=4;
 							}
 						}
 					}
@@ -65,25 +77,26 @@ class Jeu{
 			}
 		}else{
 			if ($this->tourEnCour!=0) {
-				throw new $exeption("probl�me avec le jeu");
+				throw new Exception("probl�me avec le jeu");
 			}
 		}
-		$this->tourEnCour++;
-		//$this->jeu->jeu($this->plateau[]);
+		$this->tourEnCour=$this->tourEnCour+1;
 		return array($this->plateau , $this->tabVerif, $this->tourEnCour);
-		//return $this->plateau;
 	}
 
 	public function creerCombin(){
-		for($i=0; $i <=4 ; $i++){
+		for($i=0; $i <=3 ; $i++){
 			$this->combine->add($i,rand(1,8));
 		}
 	}
 
-	public function creeJeu(){
+	/*public function creeJeu(){
 		$this->creerCombin();
 		return $this->jeu(null);
-	}
+	}*/
 
+	public function requp(){
+		return array($this->plateau , $this->tabVerif, $this->tourEnCour);
+	}
 }
 ?>

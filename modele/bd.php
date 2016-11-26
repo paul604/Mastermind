@@ -1,6 +1,6 @@
 <?php
 
-require_once 'exeptionBd.php';
+//require_once 'exeptionBd.php';
 
 // Classe qui gère les accès à la base de données
 class Bd{
@@ -32,20 +32,20 @@ private $connexion;
     try{
 	    $statement = $this->connexion->prepare("SELECT `motDePasse` FROM `joueurs` WHERE `pseudo`=?");
 	    $statement->bindParam(1, $pseudo);
-  	  $statement->execute();
-      $result=$statement->fetch(PDO::FETCH_ASSOC);
+		$statement->execute();
+		$result=$statement->fetch(PDO::FETCH_ASSOC);
 
-      if ($result["motDePasse"]!=NUll){
-        if (crypt($pseudo, $result["motDePasse"])== $result["motDePasse"]) {
-          return true;
-        }
-  	    return false;
+		if ($result["motDePasse"]!=NUll){
+			if (crypt($pseudo, $result["motDePasse"]) == $result["motDePasse"]) {
+				return true;
+			}
+			return false;
 	    }else{
 	      return false;
-      }
+		}
     }catch(PDOException $e){
-      $this->deconnexion();
-      throw new $exeption("problème avec la table joueur");
+		$this->deconnexion();
+		throw new $exeption("problème avec la table joueur");
     }
   }
 
