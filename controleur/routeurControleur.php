@@ -43,6 +43,7 @@ class RouteurControleur {
 			}
 		}catch(Exception $e){
 			echo "erreur";
+			throw $e;
 		}
 	}
 

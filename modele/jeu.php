@@ -77,7 +77,7 @@ class Jeu{
 			}
 		}else{
 			if ($this->tourEnCour!=0) {
-				throw new Exception("probl�me avec le jeu");
+				throw new Exception("problème avec le jeu");
 			}
 		}
 		$this->tourEnCour=$this->tourEnCour+1;

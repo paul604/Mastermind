@@ -6,7 +6,6 @@ class VueJeu{
 
 	public function Jeu($plateau){//$plateau[0]=> le jeu $plateau[1]=> le tabl verif
 		header("Content-type: text/html; charset=utf-8");
-		//header('Location: index.php', true, 303);
     ?>
     <html>
 		<head>

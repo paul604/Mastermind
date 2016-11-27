@@ -33,15 +33,11 @@ class ControleurAuthentification{
 	}
 
 	public function verifCo($pseudo, $mdp){
-		try{
-			if($this->bd->verifiMdp($pseudo, $mdp)){
-				$_SESSION['pseudo']=$pseudo;
-				$this->jeu();
-			}else{
-				$this->accueil();
-			}
-		}catch(Exception $e){
-			echo "ctrl2";
+		if($this->bd->verifiMdp($pseudo, $mdp)){
+			$_SESSION['pseudo']=$pseudo;
+			$this->jeu();
+		}else{
+			$this->accueil();
 		}
 	}
 
