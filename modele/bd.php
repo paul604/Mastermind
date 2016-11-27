@@ -36,12 +36,9 @@ private $connexion;
 		$result=$statement->fetch(PDO::FETCH_ASSOC);
 
 		if ($result["motDePasse"]!=NUll){
-			if (crypt($pseudo, $result["motDePasse"]) == $result["motDePasse"]) {
-				return true;
-			}
-			return false;
+			return (crypt($mdp, $result["motDePasse"]) == $result["motDePasse"]);
 	    }else{
-	      return false;
+			return false;
 		}
     }catch(PDOException $e){
 		$this->deconnexion();
