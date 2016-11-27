@@ -26,16 +26,16 @@ class RouteurControleur {
 			if ( array_key_exists("pseudo",$_POST) && array_key_exists("mdp",$_POST) ) {
 				$this->ctrlAuthentification->verifCo($_POST["pseudo"],$_POST["mdp"]);
 			}else if( array_key_exists("1",$_POST) && array_key_exists("2",$_POST) && array_key_exists("3",$_POST) && array_key_exists("4",$_POST)) {
-				print_r($_POST);
+				//print_r($_POST);
 				//echo count($_POST);
-				//if(count($_POST)==5){
+				if(count($_POST)==5){
 					$this->ctrlJeu->jeu(array($_POST["1"],
 						$_POST["2"],
 						$_POST["3"],
 						$_POST["4"]));
-				//}else{
-					//throw new Exception("problème avec la requete");
-				//}
+				}else{
+					throw new Exception("problème avec la requete");
+				}
 			}else if(array_key_exists("pseudo",$_SESSION)){
 				$this->ctrlJeu->jeu(array("requp"));
 			}else{

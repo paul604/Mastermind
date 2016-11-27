@@ -27,12 +27,12 @@ class Jeu{
 		}
 	}
 	
-	function __autoload($name){
-		require_once __DIR__."/".$name.".php";
-	}
+	// function __autoload($name){
+		// require_once __DIR__."/".$name.".php";
+	// }
 
 	public function addCombin($combinaison){
-		$this->plateau[$this->tourEnCour]->addAll($combinaison);
+		$this->plateau[$this->tourEnCour-1]->addAll($combinaison);
 	}
 
 	public function verifCombin($combinaison){
@@ -43,7 +43,7 @@ class Jeu{
 		for($i=0; $i <4 ; $i++){
 			if($combinaison[$i] == $this->combine->getIndice($i)){
 				$fait[]=$i;
-				$this->tabVerif[$this->tourEnCour]->add($j,-2);
+				$this->tabVerif[$this->tourEnCour-1]->add($j,-2);
 				$j++;
 			}
 		}
@@ -53,13 +53,13 @@ class Jeu{
 			//pion male placer
 			for($i=0; $i <4 ; $i++){
 				if(!in_array($i,$fait)){
-					for($k=0; $i<4; $i++){
+					for($k=0; $k<4; $k++){
 						if(!in_array($k,$fait) && !in_array($k,$fait2)){
 							if($combinaison[$i] == $this->combine->getIndice($k)){
 								$fait2[]=$k;
-								$this->tabVerif[$this->tourEnCour]->add($j,-1);
+								$this->tabVerif[$this->tourEnCour-1]->add($j,-1);
 								$j++;
-								$k=4;
+								$k=8;
 							}
 						}
 					}

@@ -10,14 +10,16 @@ require_once __DIR__."/../modele/jeu.php";
 class ControleurJeu{
 
 	private $vueJeu;
-	//private $modeleJeu;
+	private $modeleJeu;
 
 	public function __construct(){
 		if(!isset($_SESSION["jeu"])){
-			$jeu= new Jeu();
-			$_SESSION["jeu"]=$jeu;
+			$this->modeleJeu= new Jeu();
+			$_SESSION["jeu"]=$this->modeleJeu;
 			
-			print_r($_SESSION["jeu"]);
+			//print_r($_SESSION["jeu"]);
+		}else{
+			$this->modeleJeu=$_SESSION["jeu"];
 		}
 		$this->vueJeu=new VueJeu();
 	}
@@ -25,12 +27,12 @@ class ControleurJeu{
 	public function jeu($tab){
 		
 		if($tab==null){
-			$plateau=$_SESSION["jeu"]->Jeu(null);
+			$plateau=$this->modeleJeu->Jeu(null);
 		}else{
 			if($tab[0]=="requp"){
-				$plateau=$_SESSION["jeu"]->requp();
+				$plateau=$this->modeleJeu->requp();
 			}else{
-				$plateau=$_SESSION["jeu"]->Jeu($tab);
+				$plateau=$this->modeleJeu->Jeu($tab);
 			}
 		}
 		if(gettype($plateau)== "boolean"){
@@ -57,7 +59,7 @@ class ControleurJeu{
 						$j++;
 					}
 				}
-
+				$_SESSION["jeu"]=$this->modeleJeu;
 				$this->vueJeu->Jeu($plateau2);
 			}
 		}
