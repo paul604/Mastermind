@@ -34,7 +34,12 @@ class ControleurJeu{
 			}
 		}
 		if(gettype($plateau)== "boolean"){
-			echo "vue victoire";
+			if($plateau){
+				echo "vue victoire";
+			}else{
+				echo "vue fail";
+			}
+			session_destroy();
 		}else{
 			$plateau2=array(
 				array(),//1

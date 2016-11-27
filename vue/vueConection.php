@@ -11,13 +11,15 @@ class Conection{
       <body>
         <br/>
         <br/>
+		Le site utilise les cookie ! </br>
         <form method="post" action="index.php">
-		  Le site utilise les cookie ! </br>
-          Entrer votre pseudo  <input type="text" name="pseudo"/>
-          Entrer votre mdp  <input type="text" name="mdp"/>
-          </br>
-          </br>
-          <input type="submit" name="soumettre" value="envoyer"/>
+			<fieldset>
+				<legend>login</legend>
+				Entrer votre pseudo  <input type="text" name="pseudo"/>
+				Entrer votre mdp  <input type="text" name="mdp"/>
+				<input type="submit" name="soumettre" value="log"/>
+		  
+			</fieldset>
         </form>
         <br/>
         <br/>

@@ -21,18 +21,22 @@ class VueJeu{
 				<?php
 					$i=1;
 					foreach($plateau[0] as $tab){
-						echo "<ul>";
+						if($i==$plateau[2]){
+							echo "<ul class=\"courant\">";
+						}else{
+							echo "<ul>";
+						}
 						$indice=1;
 						foreach($tab as $val){
 							if($i==$plateau[2]){
-								echo "<li id=\"c".$val."\" class=\"courant\" class=\"".$indice."\">".$val."</li>";
+								echo "<li id=\"".$indice."\" class=\"c".$val."\" onclick=\"unSet('".$indice."')\">".$val."</li>";
 							}else{
-								echo "<li id=\"c".$val."\">".$val."</li>";
+								echo "<li id=\"".$indice."\" class=\"c".$val."\">".$val."</li>";
 							}
 							$indice++;
 						}
-						echo "</ul>";
 						$i++;
+						echo "</ul>";
 					}
 				?>
 			</div>
@@ -42,7 +46,7 @@ class VueJeu{
 					foreach($plateau[1] as $tab){
 						echo "<ul>";
 						foreach($tab as $val){
-							echo "<li id=\"c".$val."\">".$val."</li>";
+							echo "<li class=\"c".$val."\">".$val."</li>";
 						}
 						echo "</ul>";
 					}
@@ -51,14 +55,14 @@ class VueJeu{
 
 			<div id="color">
 				<ul>
-					<li id="c1" onclick="set('1')"></li>
-					<li id="c2" onclick="set('2')"></li>
-					<li id="c3" onclick="set('3')"></li>
-					<li id="c4" onclick="set('4')"></li>
-					<li id="c5" onclick="set('5')"></li>
-					<li id="c6" onclick="set('6')"></li>
-					<li id="c7" onclick="set('7')"></li>
-					<li id="c8" onclick="set('8')"></li>
+					<li class="c1" onclick="set('1')"></li>
+					<li class="c2" onclick="set('2')"></li>
+					<li class="c3" onclick="set('3')"></li>
+					<li class="c4" onclick="set('4')"></li>
+					<li class="c5" onclick="set('5')"></li>
+					<li class="c6" onclick="set('6')"></li>
+					<li class="c7" onclick="set('7')"></li>
+					<li class="c8" onclick="set('8')"></li>
 				</ul>
 			</div>
 
@@ -69,7 +73,7 @@ class VueJeu{
 				<input type="text" name="3" value="0" hidden="">
 				<input type="text" name="4" value="0" hidden="">
 
-				<input type="submit" name="soumettre" value="envoyer"/>
+				<input type="submit" id="submit" value="envoyer" disabled="disabled"/>
 			</form>
 			<br/>
 			<br/>

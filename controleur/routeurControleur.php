@@ -23,19 +23,28 @@ class RouteurControleur {
 	// Traite une requête entrante
 	public function routerRequete() {
 		try{
-			if ( array_key_exists("pseudo",$_POST) && array_key_exists("mdp",$_POST) ) {
-				$this->ctrlAuthentification->verifCo($_POST["pseudo"],$_POST["mdp"]);
+			if ( array_key_exists("pseudo",$_POST) && array_key_exists("mdp",$_POST)) {
+				if($this->ctrlAuthentification->verifCo($_POST["pseudo"],$_POST["mdp"])){
+					header("Location: index.php");//empèche le bug F5
+					$this->ctrlJeu->jeu();
+					exit();
+				}
 			}else if( array_key_exists("1",$_POST) && array_key_exists("2",$_POST) && array_key_exists("3",$_POST) && array_key_exists("4",$_POST)) {
-				//print_r($_POST);
-				//echo count($_POST);
-				if(count($_POST)==5){
-					$this->ctrlJeu->jeu(array($_POST["1"],
+				print_r($_POST);
+				echo count($_POST);
+				if(count($_POST)==4){
+					$_SESSION["choix"]=array($_POST["1"],
 						$_POST["2"],
 						$_POST["3"],
-						$_POST["4"]));
+						$_POST["4"]);
+					header("Location: index.php");//empèche le bug F5
+					exit();
 				}else{
 					throw new Exception("problème avec la requete");
 				}
+			}else if(array_key_exists("choix",$_SESSION) && isset($_SESSION["choix"])){//empèche le bug F5
+				$this->ctrlJeu->jeu($_SESSION["choix"]);
+				$_SESSION["choix"]=null;
 			}else if(array_key_exists("pseudo",$_SESSION)){
 				$this->ctrlJeu->jeu(array("requp"));
 			}else{

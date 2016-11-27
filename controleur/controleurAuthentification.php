@@ -12,13 +12,11 @@ class ControleurAuthentification{
 
 	private $vue;
 	private $bd;
-	private $jeu;
 
-	public function __construct($ctrlJeu){
+	public function __construct(){
 		//try{
 		$this->vue=new Conection();
 		$this->bd=new Bd();
-		$this->jeu=$ctrlJeu;
 		/*}catch(Exception $e){
 			echo "ctrl";
 		}*/
@@ -28,16 +26,13 @@ class ControleurAuthentification{
 		$this->vue->afficher();
 	}
 
-	public function jeu(){
-		$this->jeu->Jeu(null);
-	}
-
 	public function verifCo($pseudo, $mdp){
 		if($this->bd->verifiMdp($pseudo, $mdp)){
 			$_SESSION['pseudo']=$pseudo;
-			$this->jeu();
+			return true;
 		}else{
 			$this->accueil();
+			return false;
 		}
 	}
 

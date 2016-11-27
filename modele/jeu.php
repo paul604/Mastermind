@@ -73,7 +73,7 @@ class Jeu{
 		if(isset($tab)){
 			$this->addCombin($tab);
 			if($this->verifCombin($tab)){
-				return true;
+				return true;//victoire
 			}
 		}else{
 			if ($this->tourEnCour!=0) {
@@ -81,7 +81,11 @@ class Jeu{
 			}
 		}
 		$this->tourEnCour=$this->tourEnCour+1;
-		return array($this->plateau , $this->tabVerif, $this->tourEnCour);
+		if($this->tourEnCour>10){//fail
+			return false;
+		}else{
+			return array($this->plateau , $this->tabVerif, $this->tourEnCour);
+		}
 	}
 
 	public function creerCombin(){
