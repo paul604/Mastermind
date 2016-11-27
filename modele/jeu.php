@@ -94,10 +94,9 @@ class Jeu{
 		}
 	}
 
-	/*public function creeJeu(){
-		$this->creerCombin();
-		return $this->jeu(null);
-	}*/
+	public function getSolution(){
+		return $this->combine->getall();
+	}
 
 	public function requp(){
 		return array($this->plateau , $this->tabVerif, $this->tourEnCour);

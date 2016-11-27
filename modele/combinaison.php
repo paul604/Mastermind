@@ -41,6 +41,14 @@ class Combinaison{
 	public function getIndice($indice){
 		return $this->combine[$indice];
 	}
+	
+	public function getall(){
+		$tab=array();
+		for($i=0; $i < 4; $i++) {
+			$tab[]=$this->getIndice($i);
+		}
+		return $tab;
+	}
 
 	public function get(){
 		return $this->combine;

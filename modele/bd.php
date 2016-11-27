@@ -45,6 +45,19 @@ private $connexion;
 		throw new $exeption("problème avec la table joueur");
     }
   }
+  
+  public function addPartie($pseudo, $victoire, $nbCoup){//$victoire=0 si perdu et 1 si $victoire
+    try{
+	    $statement = $this->connexion->prepare("INSERT INTO `parties` (`pseudo`, `partieGagnee`, `nombreCoups`) VALUES (?,?,?)");
+	    $statement->bindParam(1, $pseudo);
+		$statement->bindParam(2, $victoire);
+		$statement->bindParam(3, $nbCoup);
+		$statement->execute();
+    }catch(PDOException $e){
+		$this->deconnexion();
+		throw new $exeption("problème avec la table joueur");
+    }
+  }
 
 }
 ?>

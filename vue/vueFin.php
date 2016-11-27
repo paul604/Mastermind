@@ -1,13 +1,14 @@
 <?php
-class VueJeu{
+class VueFin{
 
 	public function __construct(){
 	}
 
-	public function Jeu($plateau){//$plateau[0]=> le jeu $plateau[1]=> le tabl verif
+	public function afficher($plateau,$victoire ,$solusion){
 		header("Content-type: text/html; charset=utf-8");
+		$plateau[2]=$plateau[2]-1;
     ?>
-    <html>
+   <html>
 		<head>
 			<meta charset="UTF-8">
 			<title>Mastermind</title>
@@ -22,10 +23,10 @@ class VueJeu{
 				</div>
 				<div id="solution">
 					<ul id="tabSolus">
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
+						<li class="c<?php echo $solusion[0]?>"></li>
+						<li class="c<?php echo $solusion[1]?>"></li>
+						<li class="c<?php echo $solusion[2]?>"></li>
+						<li class="c<?php echo $solusion[3]?>"></li>
 					</ul>
 				</div>
 				<div id="jeu">
@@ -33,18 +34,10 @@ class VueJeu{
 						<?php
 							$i=1;
 							foreach($plateau[0] as $tab){
-								if($i==$plateau[2]){
-									echo "<ul class=\"courant\">";
-								}else{
-									echo "<ul>";
-								}
+								echo "<ul>";
 								$indice=1;
 								foreach($tab as $val){
-									if($i==$plateau[2]){
-										echo "<li id=\"".$indice."\" class=\"c".$val."\" onclick=\"unSet('".$indice."')\"></li>";
-									}else{
-										echo "<li id=\"".$indice."\" class=\"c".$val."\"></li>";
-									}
+									echo "<li id=\"".$indice."\" class=\"c".$val."\"></li>";
 									$indice++;
 								}
 								$i++;
@@ -68,29 +61,23 @@ class VueJeu{
 				<div id="choix">
 					<div id="color">
 						<ul>
-							<li class="c1" onclick="set('1')"></li>
-							<li class="c2" onclick="set('2')"></li>
-							<li class="c3" onclick="set('3')"></li>
-							<li class="c4" onclick="set('4')"></li>
-							<li class="c5" onclick="set('5')"></li>
-							<li class="c6" onclick="set('6')"></li>
-							<li class="c7" onclick="set('7')"></li>
-							<li class="c8" onclick="set('8')"></li>
+							<li class="c1" ></li>
+							<li class="c2" ></li>
+							<li class="c3" ></li>
+							<li class="c4" ></li>
+							<li class="c5" ></li>
+							<li class="c6" ></li>
+							<li class="c7" ></li>
+							<li class="c8" ></li>
 						</ul>
 					</div>
 	
 					<div id="bouton">
 						<form method="post" action="index.php" name="choix">
-	
-							<input type="text" name="1" value="0" hidden="">
-							<input type="text" name="2" value="0" hidden="">
-							<input type="text" name="3" value="0" hidden="">
-							<input type="text" name="4" value="0" hidden="">
-
-							<input type="submit" id="submit" value="envoyer" disabled="disabled"/>
+							<input type="submit" id="rejouer" value="rejouer"/>
 						</form>
 						<form method="post" action="index.php">
-							<input type="submit" id="deLog" name="deLog" value="deconection"/>
+							<input type="submit" name="deLog" value="deconection" hidden=""/>
 						</form>
 					</div>
 				</div>

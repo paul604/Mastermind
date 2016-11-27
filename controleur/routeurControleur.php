@@ -2,6 +2,7 @@
 
 require_once 'controleurAuthentification.php';
 require_once __DIR__."/controleurJeu.php";
+require_once __DIR__."/../vue/vueErreur.php";
 
 
 class RouteurControleur {
@@ -9,14 +10,15 @@ class RouteurControleur {
 	private $ctrlAuthentification;
 	private $ctrlJeu;
 	private $exeption;
+	private $vueErreur;
 
 	public function __construct() {
 		try{
+			$this->vueErreur=new VueErreur();
 			$this->ctrlJeu=new ControleurJeu();
 			$this->ctrlAuthentification = new ControleurAuthentification($this->ctrlJeu);
 		}catch(Exception $e){
-			echo "erreur1";
-			throw $e;
+			$this->vueErreur->Erreur($e);
 		}
 	}
 
@@ -30,8 +32,8 @@ class RouteurControleur {
 					exit();
 				}
 			}else if( array_key_exists("1",$_POST) && array_key_exists("2",$_POST) && array_key_exists("3",$_POST) && array_key_exists("4",$_POST)) {
-				print_r($_POST);
-				echo count($_POST);
+				//print_r($_POST);
+				//echo count($_POST);
 				if(count($_POST)==4){
 					$_SESSION["choix"]=array($_POST["1"],
 						$_POST["2"],
@@ -45,14 +47,16 @@ class RouteurControleur {
 			}else if(array_key_exists("choix",$_SESSION) && isset($_SESSION["choix"])){//empèche le bug F5
 				$this->ctrlJeu->jeu($_SESSION["choix"]);
 				$_SESSION["choix"]=null;
+			}else if(array_key_exists("deLog",$_POST)){
+				session_destroy();
+				$this->ctrlAuthentification->accueil(false);
 			}else if(array_key_exists("pseudo",$_SESSION)){
 				$this->ctrlJeu->jeu(array("requp"));
 			}else{
-				$this->ctrlAuthentification->accueil();
+				$this->ctrlAuthentification->accueil(false);
 			}
 		}catch(Exception $e){
-			echo "erreur";
-			throw $e;
+			$this->vueErreur->Erreur($e);
 		}
 	}
 

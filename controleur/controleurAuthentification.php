@@ -22,8 +22,8 @@ class ControleurAuthentification{
 		}*/
 	}
 
-	public function accueil(){
-		$this->vue->afficher();
+	public function accueil($bool){
+		$this->vue->afficher($bool);
 	}
 
 	public function verifCo($pseudo, $mdp){
@@ -31,7 +31,7 @@ class ControleurAuthentification{
 			$_SESSION['pseudo']=$pseudo;
 			return true;
 		}else{
-			$this->accueil();
+			$this->accueil(true);
 			return false;
 		}
 	}

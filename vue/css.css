@@ -1,16 +1,15 @@
 body{
 	display: flex;
+    justify-content: center;
+	background-image:url(img/background.jpg);
 }
 
 li {
-    /*display: flex;
-	width:25%;
-	*/
-    background-color: #696969;
+    background-color: #606060;
     width: 5vh;
     height: 5vh;
-    border-radius: 10%;
-    border: 1px solid rgba(0,0,0,0.5);
+    border-radius: 15%;
+    border: 0.05vh solid #606060;
 }
 
 ul {
@@ -20,42 +19,122 @@ ul {
 	width:100%;
 }
 
-#plateau, #verif{
+#verif ul {
+	justify-content: space-around;
+	align-items: center;
+	flex-flow: row wrap;
+}
+
+#verif li {
+	width: 2.5vh;
+	height: 2.5vh;
+}
+
+#name{
+	text-align:center;
+	font-size: 10vh;
+}
+
+#solusJeuChoix{
+	display: flex;
+	flex-direction: column;
+}
+
+#solution{
+	display: flex;
+	width: 40vw;
+}
+
+#tabSolus{
+	width: 75%;
+    height: 6vh;
+	background-color:#c0c0c0;
+	border: 0.05vh solid #000;
+}
+
+#jeu{/*plateu + verif*/
+    display: flex;
+    flex-direction: row;
+	background-color:#c0c0c0;
+	width: 40vw;
+    height: 75vh;
+}
+
+#plateau{
 	display: flex;
 	flex-direction: column-reverse;
+    justify-content: space-around;
+	width: 75%;
+    height: 100%;
+	border: 0.05vh solid #000;
+}
+
+#verif{
+	display: flex;
+	flex-direction: column-reverse;
+    justify-content: space-around;
+	width: 25%;
+    height: 100%;
+	border: 0.05vh solid #000;
+}
+
+#choix{/*color et submit*/
+	display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 6vh;
 }
 
 #color {
+    display: flex;
+	width: 25vw;
+}
 
+#submit{
+    width: 5vw;
+    height: 5vh;
+}
+#deLog{
+    width: 5vw;
 }
 
 .c1{
 	background-color:#FF0000;
+    border: 0.05vh solid #FF0000;
 }
 .c2{
 	background-color:#00FF00;
+    border: 0.05vh solid #00FF00;
 }
 .c3{
 	background-color:#0000FF;
+    border: 0.05vh solid #0000FF;
 }
 .c4{
 	background-color:#FFFF00;
+    border: 0.05vh solid #FFFF00;
 }
 .c5{
 	background-color:#00FFFF;
+    border: 0.05vh solid #00FFFF;
 }
 .c6{
 	background-color:#123456;
+    border: 0.05vh solid #123456;
 }
 .c7{
 	background-color:#654321;
+    border: 0.05vh solid #654321;
 }
 .c8{
 	background-color:#456789;
+    border: 0.05vh solid #456789;
 }
 .c-1{
 	background-color:#FFF;
+    border: 0.05vh solid #FFF;
 }
 .c-2{
 	background-color:#000;
+    border: 0.05vh solid #000;
 }
