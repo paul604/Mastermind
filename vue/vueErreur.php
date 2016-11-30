@@ -11,11 +11,12 @@ class VueErreur{
     <html>
 		<head>
 			<meta charset="UTF-8">
-			<title>Mastermind</title>
+			<title>Mastermind erruer</title>
 			<link rel="stylesheet" href="vue/reset.css">
 			<link rel="stylesheet" href="vue/css.css">
 		</head>
 		<body>
+			oops!</br>
 			<?php echo $msg;?>
 		</body>
     </html>
