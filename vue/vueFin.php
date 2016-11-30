@@ -6,7 +6,6 @@ class VueFin{
 
 	public function afficher($plateau,$victoire ,$solusion){
 		header("Content-type: text/html; charset=utf-8");
-		$plateau[2]=$plateau[2]-1;
     ?>
    <html>
 		<head>
