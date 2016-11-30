@@ -82,6 +82,7 @@ class Jeu{
 		}
 		$this->tourEnCour=$this->tourEnCour+1;
 		if($this->tourEnCour>10){//fail
+			$this->tourEnCour=10;
 			return false;
 		}else{
 			return array($this->plateau , $this->tabVerif, $this->tourEnCour);
