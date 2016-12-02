@@ -18,7 +18,7 @@ class VueFin{
 		<body>
 			<div id="solusJeuChoix">
 				<div id="name">
-					<h1>Mastermind <?php  echo $plateau[2] ?>/10</h1>
+					<h1>Mastermind</h1>
 				</div>
 				<div id="solution">
 					<ul id="tabSolus">
