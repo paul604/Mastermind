@@ -121,6 +121,11 @@ ul {
 		font-size: 4.5vh;
 }
 
+.erreur{
+	background:blue;
+	width: 40vw;
+}
+
 .c1{
 	background-color:#FF0000;
     border: 0.05vh solid #FF0000;
