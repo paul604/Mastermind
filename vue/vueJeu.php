@@ -22,6 +22,7 @@ class VueJeu{
 				</div>
 				<div id="solution">
 					<ul id="tabSolus">
+						<li id=indice></li>
 						<li></li>
 						<li></li>
 						<li></li>
@@ -39,6 +40,7 @@ class VueJeu{
 									echo "<ul>";
 								}
 								$indice=1;
+								echo "<li id=indice>".$i."</li>";
 								foreach($tab as $val){
 									if($i==$plateau[2]){
 										echo "<li id=\"".$indice."\" class=\"c".$val."\" onclick=\"unSet('".$indice."')\"></li>";
@@ -78,10 +80,10 @@ class VueJeu{
 							<li class="c8" onclick="set('8')"></li>
 						</ul>
 					</div>
-	
+
 					<div id="bouton">
 						<form method="post" action="index.php" name="choix">
-	
+
 							<input type="text" name="1" value="0" hidden="">
 							<input type="text" name="2" value="0" hidden="">
 							<input type="text" name="3" value="0" hidden="">
