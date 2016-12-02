@@ -16,8 +16,10 @@ class VueErreur{
 			<link rel="stylesheet" href="vue/css.css">
 		</head>
 		<body>
-			oops!</br>
-			<?php echo $msg;?>
+			<div class="erreur">
+				oops!</br>
+				<?php echo $msg;?>
+			</div>
 		</body>
     </html>
     <?php
