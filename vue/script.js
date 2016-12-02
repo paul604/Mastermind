@@ -17,7 +17,7 @@ function set(color){
 			nb++;
 			tab[i]=color;
 			//console.log(document.getElementsByClassName('courant')[0].getElementsByTagName("LI")[i]);
-			document.getElementsByClassName('courant')[0].getElementsByTagName("LI")[i].className="c"+color;
+			document.getElementsByClassName('courant')[0].getElementsByTagName("LI")[i+1].className="c"+color;
 			document.forms.choix.elements[i].value=color;
 			if(nb>=4){
 				submit(true);
@@ -32,7 +32,7 @@ function unSet(i){
 	if(tab[i]!=0){
 		nb--;
 		tab[i]=0;
-		document.getElementsByClassName('courant')[0].getElementsByTagName("LI")[i].className="c0";
+		document.getElementsByClassName('courant')[0].getElementsByTagName("LI")[i+1].className="c0";
 		if(nb<4){
 			submit(false);
 		}
