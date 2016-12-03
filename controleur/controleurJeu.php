@@ -2,6 +2,7 @@
 
 require_once __DIR__."/../vue/vueJeu.php";
 require_once __DIR__."/../vue/vueFin.php";
+require_once __DIR__."/../vue/vueStat.php";
 require_once __DIR__."/../modele/jeu.php";
 require_once __DIR__."/../modele/bd.php";
 
@@ -13,11 +14,12 @@ class ControleurJeu{
 
 	private $vueJeu;
 	private $vueFin;
+	private $vueStat;
 	private $bd;
 	//private $modeleJeu;
 
 	public function __construct(){
-		if(!isset($_SESSION["jeu"])){
+		if(!isset($_SESSION["jeu"]) || $_SESSION["jeu"]==null){
 			$modeleJeu= new Jeu();
 			$_SESSION["jeu"]=$modeleJeu;
 			
@@ -25,6 +27,7 @@ class ControleurJeu{
 		}
 		$this->vueJeu=new VueJeu();
 		$this->vueFin=new VueFin();
+		$this->vueStat=new VueStat();
 		$this->bd=new Bd();
 	}
 	
@@ -64,18 +67,30 @@ class ControleurJeu{
 			$p=$_SESSION["jeu"]->requp();
 			$solusion=$_SESSION["jeu"]->getSolution();
 			if($plateau){
-				$this->vueFin->afficher($this->toStringPlateau($p),true,$solusion);
-				$this->bd->addPartie($_SESSION["pseudo"], 1, $p[2]-1);
+				$this->vueFin->afficher($this->toStringPlateau($p),$solusion);
+				$this->bd->addPartie($_SESSION["pseudo"], 1, $p[2]);
 			}else{
-				$this->vueFin->afficher($this->toStringPlateau($p),false,$solusion);
+				$this->vueFin->afficher($this->toStringPlateau($p),$solusion);
 				$this->bd->addPartie($_SESSION["pseudo"], 0, 0);
 			}
-			session_destroy();
+			//session_destroy();
+			$_SESSION["victoire"]=true;
 		}else{
-			
 			$this->vueJeu->Jeu($this->toStringPlateau($plateau));
 		}
 	}
+	
+	public function victoire(){//util pour éviter le bug du F5
+		$p=$_SESSION["jeu"]->requp();
+		$solusion=$_SESSION["jeu"]->getSolution();
+		$this->vueFin->afficher($this->toStringPlateau($p),$solusion);
+	}
 
+	
+	public function stat(){
+		$statPerso=$this->bd->statPerso($_SESSION["pseudo"]);
+		$top=$this->bd->getTop5();
+		$this->vueStat->afficher($statPerso,$top);
+	}
 }
 ?>

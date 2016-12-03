@@ -58,6 +58,45 @@ private $connexion;
 		throw new $exeption("problème avec la table joueur");
     }
   }
+  
+	public function statPerso($pseudo){
+		try{
+			//partie victoire
+			$statement = $this->connexion->prepare("SELECT COUNT(*) FROM `parties` WHERE `pseudo` LIKE ? AND `partieGagnee` = 1");
+			$statement->bindParam(1, $pseudo);
+			$statement->execute();
+			$result=$statement->fetch(PDO::FETCH_ASSOC);
+			if($result==null){
+				throw new $exeption("problème avec la table joueur");
+			}
+			
+			//parti total
+			$statement2 = $this->connexion->prepare("SELECT COUNT(*) FROM `parties` WHERE `pseudo` LIKE ?");
+			$statement2->bindParam(1, $pseudo);
+			$statement2->execute();
+			$result2=$statement2->fetch(PDO::FETCH_ASSOC);
+			if($result2==null){
+				throw new $exeption("problème avec la table joueur");
+			}
+			
+			return array($result["COUNT(*)"],$result2["COUNT(*)"]);
+			
+		}catch(PDOException $e){
+			$this->deconnexion();
+			throw new $exeption("problème avec la table joueur");
+		}
+	}
+	
+	public function getTop5(){
+		$statement = $this->connexion->prepare("SELECT `pseudo`,`nombreCoups` FROM `parties` WHERE `partieGagnee` = 1 ORDER BY `nombreCoups` ASC LIMIT 0,5");
+		//$statement->bindParam(1, $pseudo);
+		$statement->execute();
+		$result=$statement->fetchall();
+		if($result==null){
+			throw new $exeption("problème avec la table joueur");
+		}
+		return $result;
+	}
 
 }
 ?>

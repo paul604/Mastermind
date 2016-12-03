@@ -44,7 +44,7 @@ ul {
 #solution{
 	display: flex;
 	width: 40vw;
-	margin: auto;
+	/*margin: auto;*/
 	background-color:rgba(201, 201, 201, 0.5);
 }
 
@@ -58,11 +58,11 @@ ul {
 #jeu{/*plateu + verif*/
     display: flex;
     flex-direction: row;
-		background-color:rgba(201, 201, 201, 0.5);
-		width: 40vw;
-    height: 75vh;
-		margin: auto;
-		border-top:  0.05vh solid #000;
+	background-color:rgba(201, 201, 201, 0.5);
+	width: 40vw;
+	height: 75vh;
+	margin-top: 0.5vh;
+	border-top:  0.05vh solid #000;
 }
 
 #plateau{
@@ -95,30 +95,83 @@ ul {
 	width: 25vw;
 }
 
+#bouton{
+	display: flex;
+	flex-flow: row;
+}
+
 #submit{
     width: 6vw;
-    height: 3vh;
-		text-align:center;
-		font-size: 2vh;
-		/*background-color:rgba(255, 255, 255, 1);*/
-		/*border: none;*/
-		margin: 0.5vh;
+    height: 5vh;
+	text-align:center;
+	font-size: 1vw;
+	margin: 0.5vh;
 }
+
 #deLog{
     width: 6vw;
-    height: 3vh;
-		text-align:center;
-		font-size: 2vh;
-		/*background-color:rgba(255, 255, 255, 1);*/
-		/*border: none;*/
-		margin: 0.5vh;
+    height: 5vh;
+	text-align:center;
+	font-size: 0.9vw;
+	margin: 0.5vh;
+}
+
+#rejouer{
+    width: 6vw;
+    height: 5vh;
+	text-align:center;
+	font-size: 0.8vw;
+	margin: 0.5vh;
+}
+
+#stat{
+    width: 6vw;
+    height: 5vh;
+	text-align:center;
+	font-size: 0.8vw;
+	margin: 0.5vh;
 }
 
 #indice{
 	background: none;
 	border: none;
-		text-align:center;
-		font-size: 4.5vh;
+	text-align:center;
+	font-size: 4.5vh;
+}
+
+/*log page*/
+#pseudo{
+}
+
+#mdp{
+}
+/**/
+.stat{
+	display: flex;
+	flex-direction: column;
+}
+.perso{
+	text-align:center;
+	font-size: 5vh;
+}
+.top{
+	display:flex;
+	text-align:center;
+	font-size: 5vh;
+    justify-content: space-around;
+	flex-direction: column;
+}
+table, th, td {
+    border: 1px solid black;
+    margin: auto;
+}
+.stat #retour , .stat #deLog {
+	width:100%;
+	margin: 0.5vh;
+    height: 5vh;
+	text-align:center;
+	font-size: 0.9vw;
+	margin: 0.5vh;
 }
 
 .erreur{

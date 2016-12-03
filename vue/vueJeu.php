@@ -22,7 +22,7 @@ class VueJeu{
 				</div>
 				<div id="solution">
 					<ul id="tabSolus">
-						<li id=indice></li>
+						<li id="indice"></li>
 						<li></li>
 						<li></li>
 						<li></li>
@@ -92,7 +92,10 @@ class VueJeu{
 							<input type="submit" id="submit" value="envoyer" disabled="disabled"/>
 						</form>
 						<form method="post" action="index.php">
-							<input type="submit" id="deLog" name="deLog" value="deconection"/>
+							<input type="submit" id="deLog" name="deLog" value="déconnexion"/>
+						</form>
+						<form method="post" action="index.php">
+							<input type="submit" id="stat" name="stat" value="stat"/>
 						</form>
 					</div>
 				</div>

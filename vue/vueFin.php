@@ -4,7 +4,7 @@ class VueFin{
 	public function __construct(){
 	}
 
-	public function afficher($plateau,$victoire ,$solusion){
+	public function afficher($plateau ,$solusion){
 		header("Content-type: text/html; charset=utf-8");
     ?>
    <html>
@@ -22,7 +22,7 @@ class VueFin{
 				</div>
 				<div id="solution">
 					<ul id="tabSolus">
-						<li id=indice></li>
+						<li id="indice"></li>
 						<li class="c<?php echo $solusion[0]?>"></li>
 						<li class="c<?php echo $solusion[1]?>"></li>
 						<li class="c<?php echo $solusion[2]?>"></li>
@@ -75,10 +75,13 @@ class VueFin{
 
 					<div id="bouton">
 						<form method="post" action="index.php" name="choix">
-							<input type="submit" id="rejouer" value="rejouer"/>
+							<input type="submit" id="rejouer" name="rejouer" value="rejouer"/>
 						</form>
 						<form method="post" action="index.php">
-							<input type="submit" name="deLog" value="deconection" hidden=""/>
+							<input type="submit" id="deLog" name="deLog" value="déconnexion"/>
+						</form>
+						<form method="post" action="index.php">
+							<input type="submit" id="stat" name="stat" value="stat"/>
 						</form>
 					</div>
 				</div>
