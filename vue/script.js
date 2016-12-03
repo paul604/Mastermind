@@ -38,3 +38,13 @@ function unSet(i){
 		}
 	}
 }
+
+function up(indice, color){
+	i=indice-1;
+	if(tab[i]==0){
+		nb++;
+		tab[i]=color;
+		document.getElementsByClassName('courant')[0].getElementsByTagName("LI")[i+1].className="c"+color;
+		document.forms.choix.elements[i].value=color;
+	}
+}

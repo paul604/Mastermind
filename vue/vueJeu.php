@@ -36,6 +36,8 @@ class VueJeu{
 							foreach($plateau[0] as $tab){
 								if($i==$plateau[2]){
 									echo "<ul class=\"courant\">";
+								}else if($i<$plateau[2]){
+									echo "<ul class=\"befor\">";
 								}else{
 									echo "<ul>";
 								}
@@ -44,6 +46,8 @@ class VueJeu{
 								foreach($tab as $val){
 									if($i==$plateau[2]){
 										echo "<li id=\"".$indice."\" class=\"c".$val."\" onclick=\"unSet('".$indice."')\"></li>";
+									}else if($i<$plateau[2]){
+										echo "<li id=\"".$indice."\" class=\"c".$val."\" onclick=\"up('".$indice."','".$val."')\"></li>";
 									}else{
 										echo "<li id=\"".$indice."\" class=\"c".$val."\"></li>";
 									}
