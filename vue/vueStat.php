@@ -4,7 +4,7 @@ class VueStat{
 	public function __construct(){
 	}
 
-	function afficher($perso,$top){
+	function afficher($perso,$top){//$perso => stat perso / $top => top 5
     header("Content-type: text/html; charset=utf-8");
     ?>
     <html>
@@ -27,14 +27,14 @@ class VueStat{
 				</div>
 				<div class="top">
 					Top 5</br>
-					<table>
+					<table><!-- créer un tableau pour le top5 -->
 						<thead>
 							<th>Pseudo</th>
 							<th>nb coups</th>
 						</thead>
 						<tbody>
 							<?php
-								foreach($top as $val){
+								foreach($top as $val){//parcour du tableau $top
 									echo "<tr>";
 									echo "<td>".$val[0]."</td>";
 									echo "<td>".$val[1]."</td>";

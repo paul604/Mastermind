@@ -4,7 +4,7 @@ class VueJeu{
 	public function __construct(){
 	}
 
-	public function Jeu($plateau){//$plateau[0]=> le jeu $plateau[1]=> le tabl verif
+	public function Jeu($plateau){//$plateau[0]=> le plateau /$plateau[1]=> le tabl verif / $plateau[2] tour en cour
 		header("Content-type: text/html; charset=utf-8");
     ?>
     <html>
@@ -21,8 +21,8 @@ class VueJeu{
 					<h1>Mastermind</h1>
 				</div>
 				<div id="solution">
-					<ul id="tabSolus">
-						<li id="indice"></li>
+					<ul id="tabSolus"><!-- corespond au solution -->
+						<li id="indice"></li><!-- permet d'avoire une casse vide pour remplacer les indice du plateur-->
 						<li></li>
 						<li></li>
 						<li></li>
@@ -34,7 +34,7 @@ class VueJeu{
 						<?php
 							$i=1;
 							foreach($plateau[0] as $tab){
-								if($i==$plateau[2]){
+								if($i==$plateau[2]){/*si la ligne traiter est avant /pendant/ apprèt le coup courant*/
 									echo "<ul class=\"courant\">";
 								}else if($i<$plateau[2]){
 									echo "<ul class=\"befor\">";
@@ -42,9 +42,9 @@ class VueJeu{
 									echo "<ul>";
 								}
 								$indice=1;
-								echo "<li id=indice>".$i."</li>";
+								echo "<li id=indice>".$i."</li>";/* corespond indice des coups 1 a 10*/
 								foreach($tab as $val){
-									if($i==$plateau[2]){
+									if($i==$plateau[2]){/*affecte les couleur déjà jouer par le joueur et verifi si la casse est dans une ligne avant /pendant/ apprèt le coup courant*/
 										echo "<li id=\"".$indice."\" class=\"c".$val."\" onclick=\"unSet('".$indice."')\"></li>";
 									}else if($i<$plateau[2]){
 										echo "<li id=\"".$indice."\" class=\"c".$val."\" onclick=\"up('".$indice."','".$val."')\"></li>";
@@ -59,7 +59,7 @@ class VueJeu{
 						?>
 					</div>
 
-					<div id="verif">
+					<div id="verif"><!-- tableau de vérification -->
 						<?php
 							foreach($plateau[1] as $tab){
 								echo "<ul>";
@@ -72,7 +72,7 @@ class VueJeu{
 					</div>
 				</div>
 				<div id="choix">
-					<div id="color">
+					<div id="color"><!-- choix des couleur -->
 						<ul>
 							<li class="c1" onclick="set('1')"></li>
 							<li class="c2" onclick="set('2')"></li>
@@ -86,6 +86,7 @@ class VueJeu{
 					</div>
 
 					<div id="bouton">
+						<!-- formulaire de choix -->
 						<form method="post" action="index.php" name="choix">
 
 							<input type="text" name="1" value="0" hidden="">
@@ -95,9 +96,11 @@ class VueJeu{
 
 							<input type="submit" id="submit" value="envoyer" disabled="disabled"/>
 						</form>
+						<!-- déconnexion -->
 						<form method="post" action="index.php">
 							<input type="submit" id="deLog" name="deLog" value="déconnexion"/>
 						</form>
+						<!-- statistiques -->
 						<form method="post" action="index.php">
 							<input type="submit" id="stat" name="stat" value="stat"/>
 						</form>

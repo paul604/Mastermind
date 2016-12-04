@@ -21,7 +21,7 @@ class VueFin{
 					<h1>Mastermind</h1>
 				</div>
 				<div id="solution">
-					<ul id="tabSolus">
+					<ul id="tabSolus"><!-- corespond au solution -->
 						<li id="indice"></li>
 						<li class="c<?php echo $solusion[0]?>"></li>
 						<li class="c<?php echo $solusion[1]?>"></li>
@@ -36,8 +36,8 @@ class VueFin{
 							foreach($plateau[0] as $tab){
 								echo "<ul>";
 								$indice=1;
-								echo "<li id=indice>".$i."</li>";
-								foreach($tab as $val){
+								echo "<li id=indice>".$i."</li>";/* corespond indice des coups 1 a 10*/
+								foreach($tab as $val){/*affecte les couleur déjà jouer par le joueur*/
 									echo "<li id=\"".$indice."\" class=\"c".$val."\"></li>";
 									$indice++;
 								}
@@ -47,7 +47,7 @@ class VueFin{
 						?>
 					</div>
 
-					<div id="verif">
+					<div id="verif"><!-- tableau de vérification -->
 						<?php
 							foreach($plateau[1] as $tab){
 								echo "<ul>";
@@ -60,7 +60,7 @@ class VueFin{
 					</div>
 				</div>
 				<div id="choix">
-					<div id="color">
+					<div id="color"><!-- choix des couleur -->
 						<ul>
 							<li class="c1" ></li>
 							<li class="c2" ></li>
@@ -74,12 +74,15 @@ class VueFin{
 					</div>
 
 					<div id="bouton">
+						<!-- formulaire de choix -->
 						<form method="post" action="index.php" name="choix">
 							<input type="submit" id="rejouer" name="rejouer" value="rejouer"/>
 						</form>
+						<!-- déconnexion -->
 						<form method="post" action="index.php">
 							<input type="submit" id="deLog" name="deLog" value="déconnexion"/>
 						</form>
+						<!-- statistiques -->
 						<form method="post" action="index.php">
 							<input type="submit" id="stat" name="stat" value="stat"/>
 						</form>

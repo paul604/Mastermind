@@ -4,7 +4,7 @@ class Conection{
 	function __construct(){
 	}
 
-	function afficher($fail){
+	function afficher($fail){//afichage 
     header("Content-type: text/html; charset=utf-8");
     ?>
     <html>
@@ -19,8 +19,8 @@ class Conection{
 				<p>Le site utilise les cookie ! </p>
 				<?php 
 					if(gettype($fail)== "boolean"){
-						if($fail){
-							?><p id="erreur"> mdp ou login incorecte </p><?php
+						if($fail){//si il y a déjà eu une connection on affiche le message:
+							?><p id="erreur"> mot de passe ou login incorecte </p><?php
 						}else{
 							?></br><?php
 						}

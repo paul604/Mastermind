@@ -4,8 +4,7 @@ class VueErreur{
 	public function __construct(){
 	}
 
-	public function Erreur($msg){
-		session_destroy();
+	public function Erreur($msg){//permet l'affichage des erreur
 		header("Content-type: text/html; charset=utf-8");
     ?>
     <html>
@@ -18,7 +17,7 @@ class VueErreur{
 		<body>
 			<div class="erreur">
 				oops!</br>
-				<?php echo $msg;?>
+				<?php echo $msg;?><!-- afficher le message d'erreur -->
 			</div>
 		</body>
     </html>

@@ -1,7 +1,5 @@
 <?php
 
-//require_once 'exeptionBd.php';
-
 // Classe qui gère les accès à la base de données
 class Bd{
 
@@ -11,16 +9,9 @@ private $connexion;
 
 // Constructeur de la classe
 	public function __construct(){
-		//try{
-			$chaine="mysql:host=localhost;dbname=E155441H";
-			$this->connexion = new PDO($chaine,"root","");
-			$this->connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-		/*}catch(PDOException $e){
-			echo "bd";
-			$this->exeption = new ExceptionBd("problème de connection à la base");
-			echo "bd";
-			throw $exeption;
-		}*/
+		$chaine="mysql:host=localhost;dbname=E155441H";
+		$this->connexion = new PDO($chaine,"rot","");
+		$this->connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 	}
 
   // méthode qui permet de se deconnecter de la base
@@ -28,25 +19,26 @@ private $connexion;
 		$this->connexion=null;
 	}
 
-  public function verifiMdp($pseudo, $mdp){
-    try{
-	    $statement = $this->connexion->prepare("SELECT `motDePasse` FROM `joueurs` WHERE `pseudo`=?");
-	    $statement->bindParam(1, $pseudo);
-		$statement->execute();
-		$result=$statement->fetch(PDO::FETCH_ASSOC);
+	public function verifiMdp($pseudo, $mdp){//verifi si le joueur a rentrée les bonne information
+		try{
+			$statement = $this->connexion->prepare("SELECT `motDePasse` FROM `joueurs` WHERE `pseudo`=?");//requete
+			$statement->bindParam(1, $pseudo);
+			$statement->execute();
+			$result=$statement->fetch(PDO::FETCH_ASSOC);
 
-		if ($result["motDePasse"]!=NUll){
-			return (crypt($mdp, $result["motDePasse"]) == $result["motDePasse"]);
-	    }else{
-			return false;
+			if ($result["motDePasse"]!=NUll){//si il y a un valeur
+				return (crypt($mdp, $result["motDePasse"]) == $result["motDePasse"]);//return true si les deux coresponde
+			}else{
+				return false;
+			}
+		}catch(PDOException $e){
+			$this->deconnexion();
+			throw new $exeption("problème avec la table joueur");
 		}
-    }catch(PDOException $e){
-		$this->deconnexion();
-		throw new $exeption("problème avec la table joueur");
-    }
-  }
+	}
   
   public function addPartie($pseudo, $victoire, $nbCoup){//$victoire=0 si perdu et 1 si $victoire
+  //ajoute la perti dans la bdd
     try{
 	    $statement = $this->connexion->prepare("INSERT INTO `parties` (`pseudo`, `partieGagnee`, `nombreCoups`) VALUES (?,?,?)");
 	    $statement->bindParam(1, $pseudo);
@@ -59,14 +51,14 @@ private $connexion;
     }
   }
   
-	public function statPerso($pseudo){
+	public function statPerso($pseudo){//recupération des stat personel
 		try{
 			//partie victoire
 			$statement = $this->connexion->prepare("SELECT COUNT(*) FROM `parties` WHERE `pseudo` LIKE ? AND `partieGagnee` = 1");
 			$statement->bindParam(1, $pseudo);
 			$statement->execute();
 			$result=$statement->fetch(PDO::FETCH_ASSOC);
-			if($result==null){
+			if($result==null){//si pas de résulta alor probème
 				throw new $exeption("problème avec la table joueur");
 			}
 			
@@ -75,7 +67,7 @@ private $connexion;
 			$statement2->bindParam(1, $pseudo);
 			$statement2->execute();
 			$result2=$statement2->fetch(PDO::FETCH_ASSOC);
-			if($result2==null){
+			if($result2==null){//si pas de résulta alor probème
 				throw new $exeption("problème avec la table joueur");
 			}
 			
@@ -87,13 +79,12 @@ private $connexion;
 		}
 	}
 	
-	public function getTop5(){
+	public function getTop5(){//return le top 5 des partie
 		$statement = $this->connexion->prepare("SELECT `pseudo`,`nombreCoups` FROM `parties` WHERE `partieGagnee` = 1 ORDER BY `nombreCoups` ASC LIMIT 0,5");
-		//$statement->bindParam(1, $pseudo);
 		$statement->execute();
 		$result=$statement->fetchall();
 		if($result==null){
-			throw new $exeption("problème avec la table joueur");
+			return array();
 		}
 		return $result;
 	}

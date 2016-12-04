@@ -18,17 +18,17 @@ class Combinaison{
 	}
 
 //$codeCouleur 1 a 8 ou 0 a 2
-	public function add($indice, $codeCouleur){
+	public function add($indice, $codeCouleur){//ajouter une couleur à un indice précis
 		if($codeCouleur < $this->minim or $codeCouleur>$this->maxi){
 			throw new Exception("problème avec l'ajout dans combine");
 		}
 		$this->combine[$indice]=$codeCouleur;
 	}
 
-	public function addAll($array){
-		if(count($array)==4){
-			for ($i=0; $i < 4; $i++) {
-				if($array[$i] < $this->minim or $array[$i]>$this->maxi){
+	public function addAll($array){//ajouter un tableau setter
+		if(count($array)==4){//vérification de la taille
+			for ($i=0; $i < 4; $i++) {//parcoure de $this->combine
+				if($array[$i] < $this->minim or $array[$i]>$this->maxi){//double vérification pour éviter tout problème
 					throw new Exception("problème avec l'ajout dans combine");
 				}
 				$this->add($i, $array[$i]);
@@ -38,11 +38,11 @@ class Combinaison{
 		}
 	}
 	
-	public function getIndice($indice){
+	public function getIndice($indice){//get une couleur présent à un indice précis
 		return $this->combine[$indice];
 	}
 	
-	public function getall(){
+	public function getall(){//get toute les couleur
 		$tab=array();
 		for($i=0; $i < 4; $i++) {
 			$tab[]=$this->getIndice($i);
@@ -50,7 +50,7 @@ class Combinaison{
 		return $tab;
 	}
 
-	public function get(){
+	public function get(){//get le tableau
 		return $this->combine;
 	}
 }
