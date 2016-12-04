@@ -1,5 +1,5 @@
 # Mastermind
-Mini projet du module programmation web coté serveur (M3301-2) du DUT Informatique à l'IUT de Nantes<br/>
+Mini projet du module programmation web coté serveur (M3104) du DUT Informatique à l'IUT de Nantes<br/>
 
 # LICENSE
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
