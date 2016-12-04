@@ -9,7 +9,6 @@ class RouteurControleur {
 
 	private $ctrlAuthentification;
 	private $ctrlJeu;
-	private $exeption;
 	private $vueErreur;
 
 	public function __construct() {

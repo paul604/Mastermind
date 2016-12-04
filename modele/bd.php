@@ -5,12 +5,10 @@ class Bd{
 
 private $connexion;
 
-	private $exeption;
-
 // Constructeur de la classe
 	public function __construct(){
 		$chaine="mysql:host=localhost;dbname=E155441H";
-		$this->connexion = new PDO($chaine,"rot","");
+		$this->connexion = new PDO($chaine,"root","");
 		$this->connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 	}
 

@@ -1,7 +1,7 @@
 var tab=[0,0,0,0];
 var nb=0;
 
-function submit(b){
+function submit(b){//change l'état du bouton submit
 	if (b){
 		document.getElementById('submit').disabled=false;
 		bool =false;
@@ -11,7 +11,7 @@ function submit(b){
 	}
 }
 
-function set(color){
+function set(color){ //ajoute une couleur au choix
 	for (i = 0; i < tab.length; i++) {
 		if(tab[i]==0){
 			nb++;
@@ -27,7 +27,7 @@ function set(color){
 	}
 }
 
-function unSet(i){
+function unSet(i){//retir une couleur au choix
 	i=i-1
 	if(tab[i]!=0){
 		nb--;
@@ -39,7 +39,7 @@ function unSet(i){
 	}
 }
 
-function up(indice, color){
+function up(indice, color){//ajoute une couleur placée précédemment au choix 
 	i=indice-1;
 	if(tab[i]==0){
 		nb++;
