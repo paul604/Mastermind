@@ -1,12 +1,5 @@
 # Mastermind
-Mini projet programmation web coté serveur<br/>
-avec bdd le rapport
-
-flex
-paletton
-
-![diagrame de clase](Class Diagram.png)
-
+Mini projet du module programmation web coté serveur (M3301-2) du DUT Informatique à l'IUT de Nantes<br/>
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
   <img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
