@@ -101,34 +101,34 @@ ul {
 }
 
 #submit{
-    width: 6vw;
-    height: 5vh;
+   /* width: 6vw;
+    height: 5vh;*/
 	text-align:center;
 	font-size: 1vw;
 	margin: 0.5vh;
 }
 
 #deLog{
-    width: 6vw;
-    height: 5vh;
+   /* width: 6vw;
+    height: 5vh;*/
 	text-align:center;
-	font-size: 0.9vw;
+	font-size: 1vw;
 	margin: 0.5vh;
 }
 
 #rejouer{
-    width: 6vw;
-    height: 5vh;
+    /*width: 6vw;
+    height: 5vh;*/
 	text-align:center;
-	font-size: 0.8vw;
+	font-size: 1vw;
 	margin: 0.5vh;
 }
 
 #stat{
-    width: 6vw;
-    height: 5vh;
+   /* width: 6vw;
+    height: 5vh;*/
 	text-align:center;
-	font-size: 0.8vw;
+	font-size: 1vw;
 	margin: 0.5vh;
 }
 
@@ -141,9 +141,31 @@ ul {
 
 /*log page*/
 #pseudo{
+	height:3vh;
 }
 
 #mdp{
+	height:3vh;
+}
+
+#connection{
+	font-size:2vh;
+}
+
+#log{
+	display:flex;
+    flex-direction: column;
+	background-color:rgba(201, 201, 201, 0.5);
+	height:20vh;
+    margin: auto;
+	padding: 1vh;
+    border-radius: 5%;
+}
+p , legend , br{
+	font-size:5vh;
+}
+p#erreur{
+	color:FF0000;
 }
 /**/
 .stat{
@@ -153,13 +175,21 @@ ul {
 .perso{
 	text-align:center;
 	font-size: 5vh;
+    border-radius: 15%;
+	background-color:rgba(201, 201, 201, 0.5);
+	margin:1vh;
+	padding:1vw;
 }
 .top{
+	margin:1vh;
+	padding:1vw;
 	display:flex;
 	text-align:center;
 	font-size: 5vh;
     justify-content: space-around;
 	flex-direction: column;
+    border-radius: 15%;
+	background-color:rgba(201, 201, 201, 0.5);
 }
 table, th, td {
     border: 1px solid black;
@@ -168,9 +198,9 @@ table, th, td {
 .stat #retour , .stat #deLog {
 	width:100%;
 	margin: 0.5vh;
-    height: 5vh;
+   /* height: 5vh;*/
 	text-align:center;
-	font-size: 0.9vw;
+	font-size: 1vw;
 	margin: 0.5vh;
 }
 
@@ -184,32 +214,32 @@ table, th, td {
     border: 0.05vh solid #FF0000;
 }
 .c2{
-	background-color:#00FF00;
-    border: 0.05vh solid #00FF00;
-}
-.c3{
-	background-color:#0000FF;
-    border: 0.05vh solid #0000FF;
-}
-.c4{
 	background-color:#FFFF00;
     border: 0.05vh solid #FFFF00;
 }
+.c3{
+	background-color:#00CC00;
+    border: 0.05vh solid #00CC00;
+}
+.c4{
+	background-color:#1B1BB3;
+    border: 0.05vh solid #1B1BB3;
+}
 .c5{
-	background-color:#00FFFF;
-    border: 0.05vh solid #00FFFF;
+	background-color:#FF8900;
+    border: 0.05vh solid #FF8900;
 }
 .c6{
-	background-color:#123456;
-    border: 0.05vh solid #123456;
+	background-color:#ffffff;
+    border: 0.05vh solid #ffffff;
 }
 .c7{
-	background-color:#654321;
-    border: 0.05vh solid #654321;
+	background-color:#CD0074;
+    border: 0.05vh solid #CD0074;
 }
 .c8{
-	background-color:#456789;
-    border: 0.05vh solid #456789;
+	background-color:#7209AB;
+    border: 0.05vh solid #7209AB;
 }
 .c-1{
 	background-color:#FFF;

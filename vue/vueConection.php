@@ -15,29 +15,29 @@ class Conection{
 			<link rel="stylesheet" href="vue/css.css">
 		</head>
 		<body>
-			<br/>
-			<br/>
-			Le site utilise les cookie ! </br>
-			<?php 
-				if(gettype($fail)== "boolean"){
-					if($fail){
-						?> mdp ou login incorecte<?php
+			<div id="log">
+				<p>Le site utilise les cookie ! </p>
+				<?php 
+					if(gettype($fail)== "boolean"){
+						if($fail){
+							?><p id="erreur"> mdp ou login incorecte </p><?php
+						}else{
+							?></br><?php
+						}
+					}else{
+						throw new Exception("problème avec le log");
 					}
-				}else{
-					throw new Exception("problème avec le log");
-				}
-			?>
-			<form method="post" action="index.php">
-				<fieldset>
-					<legend>login</legend>
-					<input type="text" id="pseudo" name="pseudo" placeholder="pseudo" autofocus required/>
-					<input type="password" id="mdp" name="mdp" placeholder="mdp" required/>
-					<input type="submit" name="soumettre" value="log"/>
+				?>
+				<form method="post" action="index.php">
+					<fieldset>
+						<legend>login</legend>
+						<input type="text" id="pseudo" name="pseudo" placeholder="pseudo" autofocus required/>
+						<input type="password" id="mdp" name="mdp" placeholder="mdp" required/>
+						<input type="submit" id="connection" name="soumettre" value="connection"/>
 		  
-				</fieldset>
-			</form>
-			<br/>
-			<br/>
+					</fieldset>
+				</form>
+			</div>
 		</body>
     </html>
     <?php
