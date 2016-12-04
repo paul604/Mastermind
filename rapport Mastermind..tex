@@ -100,7 +100,8 @@
 \clearpage
 
 \section{Introduction}
-Pour le module de programmation web coté serveur nous avons reçue un projet, qui est de réaliser un mastermind en PHP en respectant l'architecture MVC. Nous avons eu le droit d'utiliser du CSS et JS pour le style des pages.
+Pour le module de programmation web coté serveur nous avons reçue un projet, qui est de réaliser un mastermind en PHP en respectant l'architecture MVC. Nous avons eu le droit d'utiliser du CSS et JS pour le style des pages.\\
+Tout le contenue est disponible sur GitHub: \url{https://github.com/paul604/Mastermind}.
 
 \section{Le jeu}
     On nous a donc demandé de créer un mastermind.
@@ -151,10 +152,13 @@ Pour le module de programmation web coté serveur nous avons reçue un projet, qui
         Quand vous vous êtes connecter vous pouvez voir les statistique personnel et les 5 meilleur partie.\\
         \includegraphics[width=\linewidth]{stat}\\
         
+\clearpage
 \section{Le code}
     Ici je vais explique le code et les choix réaliser.
     
-    MVC 
+    Pour le respect de l'architecture MVC on peu voir quelle est respecter en regardant le diagramme de class qui nous montre que les contrôleurs font la passerelle entre le modèle et la vue et qu'il y a aucun échange entre ces deux partie.\\
+    \includegraphics[width=\linewidth]{Class_Diagram}\\
+    
     
     \subsection{Controleur}
     
@@ -273,7 +277,7 @@ Pour le module de programmation web coté serveur nous avons reçue un projet, qui
             Il y a aussi un bouton pour ce déconnecter et un pour voir les statistiques.
             
         \subsubsection{VueStat}
-            $VueStat$ permet d'afficher les statistiques personnel du joueur et le top 5 des partie de tout les joueur avec la fonction $afficher(\$perso,\$top)$. $\$perso$ est un tableau qui contient le nombre de partie gagné et le nombre de partie jouer. $\$top$ est un tableau des 5 élément qui contienne un pseudo et le nombre de coups utiliser pour gagné la partie.
+            $VueStat$ permet d'afficher les statistiques personnel du joueur et le top 5 des partie de tout les joueur avec la fonction $afficher(\$perso,\$top)$. $\$perso$ est un tableau qui contient le nombre de partie gagné et le nombre de partie jouer. $\$top$ est un tableau de 5 élément qui contienne un pseudo et le nombre de coups utiliser pour gagné la partie.
             Un bouton permet de retourner joueur et un autre de se déconnecter.
             
         \subsubsection{VueFin}
@@ -282,5 +286,15 @@ Pour le module de programmation web coté serveur nous avons reçue un projet, qui
             
         \subsubsection{VueErreur}
             $VueErreur$ est la vue qui gère les erreur. Elle est appeler quand on rentre dans l'un des $catch$ de $RouteurControleur$ (cf.\ref{RouteurControleur}) en utilisant la fonction $Erreur(\$msg)$. $\$msg$ correspond au message de l'erreur.
+            
+        \subsubsection{CSS}
+            Il y a deux css, un qui effectue une remise à zéro des règle et un autre qui effectue la mise en forme.
+            
+        \subsubsection{JS}
+            Le JS est utiliser pour remplir le formulaire invisible (cf.\ref{VueJeu})\\
+            $set(color)$ permet d'ajouter la couleur choisie dans le tableau et dans le formulaire.\\
+            $unSet(i)$ permet de retirée la couleur choisie dans le tableau et dans le formulaire.\\
+            $up(indice, color)$ permet d'ajouté une couleur placée précédemment dans le tableau et dans le formulaire.\\
+            $submit(b)$ permet de verrouille/déverrouille le bouton envoyer.
 
 \end{document}
