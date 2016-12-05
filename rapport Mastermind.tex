@@ -1,0 +1,300 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[frenchb]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{authblk}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titling}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage[none]{hyphenat}
+\usepackage[babel=true]{csquotes}
+
+ \geometry{
+ a4paper,
+ total={169mm,240mm},
+ left=16mm,
+ top=20mm,
+ }
+
+\usepackage{listings} % For code coloration
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+
+\headheight = 14pt
+
+\hypersetup{colorlinks = true,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black}
+
+\lstdefinestyle{s}{
+  backgroundcolor=\color{backcolour},   commentstyle=\color{codegreen},
+  keywordstyle=\color{NavyBlue},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=4
+}
+
+
+\lstset{style=s}
+\lstset{literate=
+  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+  {u}{{\H{u}}}1 {U}{{\H{U}}}1 {o}{{\H{o}}}1 {O}{{\H{O}}}1
+  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+  {€}{{\EUR}}1 {£}{{\pounds}}1 {°}{{\no}}1
+}
+
+\pretitle{
+  \begin{center}
+  \includegraphics[width=60mm,height=31mm]{univ.png}
+  \qquad \qquad
+  \includegraphics[width=37mm,height=31mm]{iutNantes.jpg}\\[\bigskipamount]
+}
+ 
+\posttitle{\end{center}}
+  
+\title{Rapport mastermind\\
+\normalsize Programmation web coté serveur}
+\date{\today}
+\author{Paul Orhon\\
+\small DUT INFO 2 -- G2 }
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Paul Orhon --- \small INFO 2 -- G2}
+\lhead{Rapport mastermind --- Programmation web coté serveur}
+\rfoot{Page \thepage}
+\lfoot{INSTITUT UNIVERSITAIRE DE TECHNOLOGIE - NANTES}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\clearpage
+
+\section{Introduction}
+Pour le module de programmation web coté serveur nous avons reçue un projet, qui est de réaliser un mastermind en PHP en respectant l'architecture MVC. Nous avons eu le droit d'utiliser du CSS et JS pour le style des pages.\\
+Tout le contenue est disponible sur GitHub: \url{https://github.com/paul604/Mastermind}.
+
+\section{Le jeu}
+    On nous a donc demandé de créer un mastermind.
+
+    \subsection{Règle de base}
+    wikipedia ( \url{https://fr.wikipedia.org/wiki/Mastermind#Principe}) :\\ 
+    \enquote{
+    Un joueur commence par placer son choix de pions sans qu'ils soient vus de l'autre joueur à l'arrière d'un cache qui les masquera à la vue de celui-ci jusqu'à la fin de la manche.
+
+    Le joueur qui n'a pas sélectionné les pions doit trouver quels sont les quatre pions, c'est-à-dire leurs couleurs et positions.
+
+    Pour cela, à chaque tour, le joueur doit se servir de pions pour remplir une rangée selon l'idée qu'il se fait des pions dissimulés.
+
+    Une fois les pions placés, l'autre joueur indique :
+    \begin{enumerate}
+    \item le nombre de pions de la bonne couleur bien placés en utilisant le même nombre de pions noir ;
+    \item le nombre de pions de la bonne couleur, mais mal placés, avec les pions blancs.
+    \end{enumerate}
+    Il arrive donc surtout en début de partie qu'il ne fasse rien concrètement et qu'il n'ait à dire qu'aucun pion ne correspond, en couleur ou en couleur et position.
+
+    La tactique du joueur actif consiste à sélectionner en fonction des coups précédents, couleurs et positions, de manière à obtenir le maximum d'informations de la réponse du partenaire puisque le nombre de propositions est limité par le nombre de rangées de trous du jeu. Dans la plupart des cas, il s'efforce de se rapprocher le plus possible de la solution, compte tenu des réponses précédentes, mais il peut aussi former une combinaison dans le seul but de vérifier une partie des conclusions des coups précédents et de faire en conséquence la proposition la plus propice à la déduction d'une nouvelle information.
+
+    Le joueur gagne cette manche s'il donne la bonne combinaison de pions sur la dernière rangée ou avant. Dans tous les cas, c'est à son tour de choisir les pions à découvrir. Mais il est interdit de mettre une couleur en double, en triple ou en quadruple aussi bien dans les pions secrets que dans les pions "publics".
+    }
+    \paragraph{}
+    Ici, le joueur qui place les pions cacher est remplacé par l'ordinateur.
+    
+    \subsection{Comment jouer?}
+        Dans un premier temp il va falloir se connecter. (il y a seulement deux compte: titi(mdp:titi) et toto(mdp:toto))(Les images sont susceptible d'avoir changé)\\
+        \includegraphics[width=\linewidth]{log}\\
+        
+        Si vous entrér les mauvaise information le serveur vous les redemandera.\\
+        \includegraphics[width=\linewidth]{logFail}\\
+        
+\clearpage
+
+        Une fois connecté vous tomberez sur cette image:\\
+        \includegraphics[width=\linewidth]{ingame}\\
+        \paragraph{}
+        Pour jouer il vous suffit de cliquer sur l'une des couleurs présente dans la ligne de choix (à gauche du bouton envoyer, elle se placera à la première place trouver), ou sur l'une des couleurs déjà placée sur le plateau (elle se placera à la même place où elle est placé mais sur la ligne courante).
+        
+        \paragraph{}
+        Une foi la bonne combinaison trouver ou le nombre maximum de coup atteint la solution se dévoile et vous pouvez faire un partie.\\
+        \includegraphics[width=\linewidth]{victoir}\\
+        
+\clearpage
+
+        Quand vous vous êtes connecter vous pouvez voir les statistique personnel et les 5 meilleur partie.\\
+        \includegraphics[width=\linewidth]{stat}\\
+        
+\clearpage
+\section{Le code}
+    Ici je vais explique le code et les choix réaliser.
+    
+    Pour le respect de l'architecture MVC on peu voir quelle est respecter en regardant le diagramme de class qui nous montre que les contrôleurs font la passerelle entre le modèle et la vue et qu'il y a aucun échange entre ces deux partie.\\
+    \includegraphics[width=\linewidth]{Class_Diagram}\\
+    
+    
+    \subsection{Controleur}
+    
+        \subsubsection{RouteurControleur}\label{RouteurControleur}
+        $RouteurControleur$ est la class qui décide qui appeler pour effectuer les action.\\
+        Tout le code est entouré dans un $try$ $catch$, se qui permet de détecter tout problème, de détruire la session, et de diriger le joueur vers la page d'erreur si une exception est levé n'importe ou dans le code.\\
+        Dans la fonction $routerRequete()$, il y a une suite de condition qui sont ordonné dans un sens précis pour éviter tout bug.\\
+        Pour éviter le problème avec le rechargement de la page (F5) des redirection ("header("Location: index.php");") sont présent dans certaine condition.
+        \begin{description}
+            \item[Premier if:] Le joueur demande de se connecter, puis après verification dans la base de données et affectation du cookie de session le joueur est redirigé.
+            \item[Deuxième if:] Le joueur demande de se déconnecter, on supprime la session et on le renvoi a la page de connections.
+            \item[Troisième if:] Le joueur a fait une proposition de combinaison, on rentre sa proposition dans une session puis on le redirige pour éviter le problème du F5.
+            \item[Quatrième if:] Le joueur demande de rejouer, on remet le jeu à zero, on en créer un nouveau et on le redirige comme à sa connections.
+            \item[Cinquième if:] Le joueur demande de voir les stat.
+            \item[Sixième if:] Le joueur a fini la partie, on afiche la vue de fin.
+            \item[Septième if:] Le joueur passe par ici a la suite de la redirection du troisième if.
+            \item[Huitième if:] Le joueur arrive ici quand il commence une nouvelle partie et quand il a quitter la partie et qu'il revient.
+            \item[else:] On affiche la page de connections.
+        \end{description}
+        
+        \subsubsection{ControleurAuthentification}
+            $ControleurAuthentification$ s'occupe de l'identification du joueur.\\
+            La fonction $accueil(\$bool)$ affiche la page de conection. Si $\$bool$ est à $true$, le joueur a déjà tenter de se connecter (permet l'affichage d'un message erreur).\\
+            La fonction $verifCo(\$pseudo, \$mdp)$ permet la verification du couple pseudo, mdp en appellent la basse de données. Si tout est bon on affecte le pseudo à un cookie de session et on retourne $true$ sinon on retourne $false$.
+        
+        \subsubsection{ControleurJeu}
+            $ControleurJeu$ s'occupe du jeu.
+            
+            \paragraph{}
+            $\_\_construct()$ est un peu particulier car si il n'y a pas encore de $jeu$ dans le cookie de session on en créer un nouveau. Cela permet de toujours avoir le même $jeu$ pour un joueur et permet de ne pas remettre à zéro le plateau apprêt chaque coup.
+            
+            \paragraph{}
+            $toStringPlateau(\$plateau)$ permet d'envoyer le plateau a la vue sans problème, c'est l'équivalent du $toString$ en java.
+        
+            \paragraph{}
+            $jeu(\$tab)$ est la fonction principale de la class. En fonction de l'entrée elle décide quoi faire. Si $\$tab$ est null on créer un nouveau jeu, si on veux reprendre la partie ou si on vien de jouer un coup. 
+           
+            \paragraph{}
+            $victoire()$ permet de récupérer le plateau et la solution pour l'afficher au joueur.
+            
+            \paragraph{}
+            $stat()$ permet d'afficher les stat en consultant la basse de données.
+        
+        
+    \subsection{Modele}
+        \subsubsection{bd}
+            $bd$ est la class qui s'occupe de la communication avec la base de données.
+            
+            \paragraph{}
+            $verifiMdp(\$pseudo, \$mdp)$ est la fonction qui permet de verifier le couple pseudo, mdp. Si $\$pseudo$ est présent dans la  base de données on vérifi si $\$mdp$ corespon au mot de passe trouve (apprêt cryptage de $\$mdp$).
+    
+            \paragraph{}
+            $addPartie(\$pseudo, \$victoire, \$nbCoup)$ permet d'ajouter la partie fini à la base de données. $\$victoire$=0 si la partie a été perdu et 1 si la partie a été gagnée.
+            
+            \paragraph{}
+            $statPerso(\$pseudo)$ cette fonction permet de récupérer les statistique personnel d'un joueur notamment ses partie gagnée et le nombre total de partie jouer.
+            
+            \paragraph{}
+            $getTop5()$ récupère les 5 meilleur parti de tout les joueur confondu et retourne leur pseudo et leur nombres de coups.
+            
+            
+        \subsubsection{jeu}
+            $jeu$ est la class de basse du jeu.
+            Avant tout on vérifie si il y a un cookie se session, si se n'ait pas le cas on démarre la session.
+            Les couleur son symboliser par des numéro pour faciliter les vérification
+            
+            \paragraph{}
+            $addCombin(\$combinaison)$ permet l'ajout d'une combinaison dans le plateau.
+            
+            \paragraph{}
+            $verifCombin(\$combinaison)$ permet de vérifier la proposition du joueur.\\
+            Dans la première boucle on vérifie si les couleur de la proposition sont bien placer. Si c'est le cas on ajoute le numéro de leur, place dans la proposition, dans un tableau "fait" pour ne pas les retester par la suite. Si tout les couleur sont bien placer on retourne $true$.\\
+            Dans la deuxième boucle on vérifie si les couleur de la proposition sont mal placée, mais sans revérifier les couleur déjà présente dans le tableau "fait".
+            Si une couleur est mal placée on ajoute sont indice dans un tableau "fait2" pour ne pas la retester si la couleur est présente plusieurs fois dans la proposition.
+            
+            \paragraph{}
+            $jeu(\$tab)$ est la fonction principale. Si $\$tab$ est un tableau alors le joueur a fait une proposition donc on fait les vérification, sinon c'est la création du jeu et si le $tourEnCour$ est diffèrent de 0 il y a un problème. Ensuite on incrémente $tourEnCour$ de 1, puis si il a pas dépasser le nombre de coups maximum on retourne $false$ pour indiquer la fin de la partie, sinon retourne tous se que la vue aura besoin: le plateau, la table de vérification (les pion bien et mal placé), et $tourEnCour$.
+            
+            \paragraph{}
+            $creerCombin()$ permet la création de la combinaison à trouver en utilisant un random.
+            
+            \paragraph{}
+            $getSolution()$ est le getter de $\$this->combine$ qui est la combinaison à trouver.
+            
+            \paragraph{}
+            $requp()$ est appeler si le joueur vue récupère la parti en cour en retournant tous se que la vue aura besoin: le plateau, la table de vérification (les pion bien et mal placé), et $tourEnCour$.
+            
+        \subsubsection{Combinaison}
+            $Combinaison$ est la class qui symbolise une proposition/combinaison.
+            
+            \paragraph{}
+            $\_\_construct(\$verif)$ si $\$verif$ est à 0 alors $Combinaison$ sait que les valeur à accepter sont entre 1 et 8 et corresponde à une proposition/combinaison dans le $plateau$, sinon si $\$verif$ est à 1 alors $Combinaison$ sait que les valeur à accepter sont entre -2 et 0 et corresponde à une vérification proposition (0=> la couleur n'existe pas ; -1=> la couleur existe mais est mal placée ; -2=> la couleur est bien placée).
+            
+            \paragraph{}
+            $add(\$indice, \$codeCouleur)$ permet d'ajouter une couleur à un indice précis. Mais avant d'ajouter la couleur il vérifie elle est comprise dans le bonne intervalle.
+            
+            \paragraph{}
+            $addAll(\$array)$ correspond au setter de $\$this->combine$. Elle permet d'ajouter un tableau, de taille 4, contenant des couleur.
+            
+            \paragraph{}
+            $getIndice(\$indice)$ permet de récupérer une couleur présent à un indice précis.
+            
+            \paragraph{}
+            $getall()$ et $get()$ corresponde au getter de $\$this->combine$ (les deux sont présent car $getall()$ permet de vérifier le fonctionnement de $getIndice(\$indice)$)
+        
+        
+    \subsection{Vue}
+        
+        \subsubsection{VueConection}
+            $VueConection$ gère la vue de connections via la fonction $afficher(\$fail)$, si $\$fail$ est à $true$ alors le joueur à déjà tenter de se connecter et on lui affiche un message. Pour les champ de connections un formulaire en post.
+        
+        
+        \subsubsection{VueJeu}\label{VueJeu}
+            $VueJeu$ gère la vue de jeu via la fonction $Jeu(\$plateau)$. $\$plateau$ est un tableau constituer de deux tableaux et d'une valeur. La valeur correspond au tour courant, le premier tableau est le plateau de jeux (là où le joueur fait ses proposition) et le deuxième tableau correspond au tableau de vérification (là où est afficher si les pions de couleur sont bien/mal placée).\\
+            A la fin ce trouve un formulaire (utilisant la méthode post) qui permet de faire sont choix. Ce formulaire est cacher au joueur et est modifier avec du Java Script.
+            Il y a aussi un bouton pour ce déconnecter et un pour voir les statistiques.
+            
+        \subsubsection{VueStat}
+            $VueStat$ permet d'afficher les statistiques personnel du joueur et le top 5 des partie de tout les joueur avec la fonction $afficher(\$perso,\$top)$. $\$perso$ est un tableau qui contient le nombre de partie gagné et le nombre de partie jouer. $\$top$ est un tableau de 5 élément qui contienne un pseudo et le nombre de coups utiliser pour gagné la partie.
+            Un bouton permet de retourner joueur et un autre de se déconnecter.
+            
+        \subsubsection{VueFin}
+            $VueFin$ est appeler, en utilisant $afficher(\$plateau ,\$solusion)$, quand le joueur a fini la partie. $\$plateau$ est constituer des même objet que dans $VueJeu$ (cf.\ref{VueJeu}). $\$solusion$ est un tableau de 4 chiffre représentant les couleur a trouver.\\
+            A la fin ce trouve des boutons permettant de rejouer, ce déconnecter et pour voir les statistiques. Les boutons sont dans des formulaire diffèrent pour faciliter la mise en page.
+            
+        \subsubsection{VueErreur}
+            $VueErreur$ est la vue qui gère les erreur. Elle est appeler quand on rentre dans l'un des $catch$ de $RouteurControleur$ (cf.\ref{RouteurControleur}) en utilisant la fonction $Erreur(\$msg)$. $\$msg$ correspond au message de l'erreur.
+            
+        \subsubsection{CSS}
+            Il y a deux css, un qui effectue une remise à zéro des règle et un autre qui effectue la mise en forme.
+            
+        \subsubsection{JS}
+            Le JS est utiliser pour remplir le formulaire invisible (cf.\ref{VueJeu})\\
+            $set(color)$ permet d'ajouter la couleur choisie dans le tableau et dans le formulaire.\\
+            $unSet(i)$ permet de retirée la couleur choisie dans le tableau et dans le formulaire.\\
+            $up(indice, color)$ permet d'ajouté une couleur placée précédemment dans le tableau et dans le formulaire.\\
+            $submit(b)$ permet de verrouille/déverrouille le bouton envoyer.
+
+\end{document}
